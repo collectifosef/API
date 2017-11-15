@@ -1,2 +1,5 @@
 /apache-log
 /var/cache
+/.idea
+/var/sessions
+/web/bundles
