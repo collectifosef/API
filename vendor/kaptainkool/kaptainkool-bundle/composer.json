@@ -1,0 +1,30 @@
+{
+    "name": "kaptainkool/kaptainkool-bundle",
+    "description": "Perso Handler",
+    "type": "symfony-bundle",
+    "keywords": ["kaptainkool", "symfony", "bundle"],
+    "require": {
+        "symfony/symfony": "3.3.*",
+        "php": ">=5.5.9",
+        "doctrine/doctrine-bundle": "^1.6",
+        "doctrine/orm": "^2.5",
+        "gedmo/doctrine-extensions": "^2.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "KaptainKool\\KaptainKoolBundle\\": ""
+        }
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Tomatis Alexandre",
+            "email": "alexandre.tomatis@gmail.com"
+        }
+    ],
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        }
+    }
+}
