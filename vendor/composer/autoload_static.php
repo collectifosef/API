@@ -74,6 +74,7 @@ class ComposerStaticInit90b8a5092c2207872783032361aef51b
         array (
             'Knp\\Menu\\' => 9,
             'Knp\\Bundle\\MenuBundle\\' => 22,
+            'KaptainKool\\KaptainKoolBundle\\' => 30,
         ),
         'I' => 
         array (
@@ -256,6 +257,10 @@ class ComposerStaticInit90b8a5092c2207872783032361aef51b
         'Knp\\Bundle\\MenuBundle\\' => 
         array (
             0 => __DIR__ . '/..' . '/knplabs/knp-menu-bundle',
+        ),
+        'KaptainKool\\KaptainKoolBundle\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/kaptainkool/kaptainkool-bundle',
         ),
         'Incenteev\\ParameterHandler\\' => 
         array (

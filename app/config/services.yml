@@ -1,2 +1,5 @@
 imports:
     - { resource: services/doctrine_extensions.yml }
+    - { resource: services/sonata_admin.yml }
+
+services:
