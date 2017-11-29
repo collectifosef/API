@@ -8,8 +8,8 @@
 
 namespace AppBundle\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 use KaptainKool\KaptainKoolBundle\Model\AbstractBaseEntity;
 use KaptainKool\KaptainKoolBundle\Model\Traits\TimestampableTrait;
 
@@ -51,12 +51,20 @@ class Broadcast extends AbstractBaseEntity
     /**
      * @var ArrayCollection
      *
+     * @ORM\OneToMany(targetEntity="Series", mappedBy="broadcast")
+     */
+    protected $seriess;
+
+    /**
+     * @var ArrayCollection
+     *
      * @ORM\OneToMany(targetEntity="Podcast", mappedBy="broadcast")
      */
     protected $podcasts;
 
     public function __construct()
     {
+        $this->seriess = new ArrayCollection();
         $this->podcasts = new ArrayCollection();
     }
 
@@ -138,6 +146,38 @@ class Broadcast extends AbstractBaseEntity
         $this->category = $category;
 
         return $this;
+    }
+
+    /**
+     * @param Series $series
+     *
+     * @return self
+     */
+    public function addSeries(Series $series)
+    {
+        $this->seriess->add($series);
+
+        return $this;
+    }
+
+    /**
+     * @param Series $series
+     *
+     * @return self
+     */
+    public function removeSeries(Series $series)
+    {
+        $this->seriess->removeElement($series);
+
+        return $this;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getSeries()
+    {
+        return $this->seriess;
     }
 
     /**

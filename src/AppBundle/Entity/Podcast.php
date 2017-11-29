@@ -53,6 +53,13 @@ class Podcast extends AbstractBaseEntity
     protected $thumbnail;
 
     /**
+     * @var Series
+     *
+     * @ORM\ManyToOne(targetEntity="Series", inversedBy="podcasts", fetch="EAGER")
+     */
+    protected $series;
+
+    /**
      * @var Broadcast
      *
      * @ORM\ManyToOne(targetEntity="Broadcast", inversedBy="podcasts", fetch="EAGER")
@@ -141,23 +148,34 @@ class Podcast extends AbstractBaseEntity
     }
 
     /**
+     * @return Series
+     */
+    public function getSeries()
+    {
+        return $this->series;
+    }
+
+    /**
+     * Le broadcast est dépendant de la série, on le met donc à jour automatiquement.
+     *
+     * @param Series $series
+     *
+     * @return self
+     */
+    public function setSeries($series)
+    {
+        $this->series = $series;
+        $this->broadcast = $series->getBroadcast();
+
+        return $this;
+    }
+
+    /**
      * @return Broadcast
      */
     public function getBroadcast()
     {
         return $this->broadcast;
-    }
-
-    /**
-     * @param Broadcast $broadcast
-     *
-     * @return self
-     */
-    public function setBroadcast($broadcast)
-    {
-        $this->broadcast = $broadcast;
-
-        return $this;
     }
 
 }

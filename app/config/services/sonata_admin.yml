@@ -5,7 +5,21 @@ services:
         class: AppBundle\Admin\CategoryAdmin
         arguments: [~, AppBundle\Entity\Category, ~]
         tags:
-            - { name: sonata.admin, manager_type: orm, label: Category }
+            - { name: sonata.admin, manager_type: orm, label: Categories }
+        public: true
+
+    admin.broadcast:
+        class: AppBundle\Admin\BroadcastAdmin
+        arguments: [~, AppBundle\Entity\Broadcast, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: Emissions }
+        public: true
+
+    admin.series:
+        class: AppBundle\Admin\SeriesAdmin
+        arguments: [~, AppBundle\Entity\Series, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: Série }
         public: true
 
     admin.podcast:

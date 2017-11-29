@@ -6,12 +6,3 @@ services:
 
     _defaults:
         autowire: true
-
-    AppBundle\Service\FileUploader:
-        arguments:
-            $targetDir: '%podcast_directory%'
-
-    AppBundle\EventListener\PodcastUploadListener:
-        tags:
-            - { name: doctrine.event_listener, event: prePersist }
-            - { name: doctrine.event_listener, event: preUpdate }

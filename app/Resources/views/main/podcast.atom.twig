@@ -28,15 +28,17 @@
 
         <updated>2013-02-18T13:45:58Z</updated>
 
+        {% for podcast in podcasts %}
         <content type="xhtml">
 
             <div xmlns="http://www.w3.org/1999/xhtml">
 
-                … ici le reste de votre contenu bien formé …
+                … {{ podcast.name }} …
 
             </div>
 
         </content>
+        {% endfor %}
 
     </entry>
 
