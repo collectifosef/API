@@ -9,12 +9,14 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Gedmo\Mapping\Annotation as Gedmo;
 use KaptainKool\KaptainKoolBundle\Model\AbstractBaseEntity;
 use KaptainKool\KaptainKoolBundle\Model\Traits\TimestampableTrait;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ORM\Entity
+ * @Vich\Uploadable
  */
 class Podcast extends AbstractBaseEntity
 {
@@ -28,9 +30,18 @@ class Podcast extends AbstractBaseEntity
     protected $description;
 
     /**
+     * @var File
+     *
+     * @Vich\UploadableField(mapping="podcast", fileNameProperty="source", size="123541613155")
+     *
+     */
+    private $sourceFile;
+
+    /**
      * @var string
      *
      * @ORM\Column(type="string")
+     *
      */
     protected $source;
 
@@ -66,6 +77,27 @@ class Podcast extends AbstractBaseEntity
         $this->description = $description;
 
         return $this;
+    }
+
+    /**
+     *
+     * @param File $sourceFile
+     *
+     * @return self
+     */
+    public function setSourceFile(File $sourceFile = null)
+    {
+        $this->sourceFile = $sourceFile;
+
+        return $this;
+    }
+
+    /**
+     * @return File|null
+     */
+    public function getSourceFile()
+    {
+        return $this->sourceFile;
     }
 
     /**

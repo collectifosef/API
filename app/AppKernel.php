@@ -27,6 +27,8 @@ class AppKernel extends Kernel
             new Sonata\DoctrineORMAdminBundle\SonataDoctrineORMAdminBundle(),
             /* RESTFull*/
             new FOS\RestBundle\FOSRestBundle(),
+            /* Updload file clean */
+            new Vich\UploaderBundle\VichUploaderBundle(),
             /* Kaptainkool (bundle perso) */
             new KaptainKool\KaptainKoolBundle\KaptainKoolBundle(),
         ];

@@ -9,6 +9,7 @@ namespace KaptainKool\KaptainKoolBundle\Model;
 
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Doctrine\ORM\Mapping\MappedSuperclass;
 
 /**
  * Class AbstractBaseEntity

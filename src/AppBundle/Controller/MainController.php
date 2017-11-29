@@ -11,18 +11,28 @@ namespace AppBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
- * Homepage.
+ * Main controller
  *
- * @Route("/", name="homepage")
- * @Template("main/home.html.twig")
  */
 class MainController extends Controller
 {
 
+    /**
+     * Homepage.
+     *
+     * @Route("/", name="homepage")
+     * @Template("main/home.html.twig")
+     * @return array
+     */
     public function indexAction()
     {
+        $entityManager = $this->getDoctrine()->getManager();
+
+        return [];
     }
 
 }

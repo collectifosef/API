@@ -7,3 +7,10 @@ services:
         tags:
             - { name: sonata.admin, manager_type: orm, label: Category }
         public: true
+
+    admin.podcast:
+        class: AppBundle\Admin\PodcastAdmin
+        arguments: [~, AppBundle\Entity\Podcast, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: Podcast }
+        public: true
