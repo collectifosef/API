@@ -8,6 +8,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use KaptainKool\KaptainKoolBundle\Model\AbstractBaseEntity;
 use KaptainKool\KaptainKoolBundle\Model\Traits\TimestampableTrait;
@@ -15,6 +16,9 @@ use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
+ * Class Podcast
+ *
+ * @package AppBundle\Entity
  * @ORM\Entity
  * @Vich\Uploadable
  */
@@ -46,13 +50,6 @@ class Podcast extends AbstractBaseEntity
     protected $source;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(type="string")
-     */
-    protected $thumbnail;
-
-    /**
      * @var Series
      *
      * @ORM\ManyToOne(targetEntity="Series", inversedBy="podcasts", fetch="EAGER")
@@ -65,6 +62,36 @@ class Podcast extends AbstractBaseEntity
      * @ORM\ManyToOne(targetEntity="Broadcast", inversedBy="podcasts", fetch="EAGER")
      */
     protected $broadcast;
+
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\ManyToMany(targetEntity="Person", inversedBy="authors")
+     * @ORM\JoinTable(name="author")
+     */
+    protected $authors;
+
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\ManyToMany(targetEntity="Person", inversedBy="guests")
+     * @ORM\JoinTable(name="guest")
+     */
+    protected $guests;
+
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\ManyToMany(targetEntity="Person", inversedBy="mixeurs")
+     * @ORM\JoinTable(name="mixeur")
+     */
+    protected $mixeurs;
+
+    public function __construct() {
+        $this->authors = new ArrayCollection();
+        $this->guests = new ArrayCollection();
+        $this->mixeurs = new ArrayCollection();
+    }
 
     /**
      * @return string
@@ -128,26 +155,6 @@ class Podcast extends AbstractBaseEntity
     }
 
     /**
-     * @return string
-     */
-    public function getThumbnail()
-    {
-        return $this->thumbnail;
-    }
-
-    /**
-     * @param string $thumbnail
-     *
-     * @return self
-     */
-    public function setThumbnail($thumbnail)
-    {
-        $this->thumbnail = $thumbnail;
-
-        return $this;
-    }
-
-    /**
      * @return Series
      */
     public function getSeries()
@@ -176,6 +183,102 @@ class Podcast extends AbstractBaseEntity
     public function getBroadcast()
     {
         return $this->broadcast;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getAuthors() {
+
+        return $this->authors;
+    }
+
+    /**
+     * @param Person $author
+     *
+     * @return self
+     */
+    public function addAuthor(Person $author)
+    {
+        $this->authors->add($author);
+
+        return $this;
+    }
+
+    /**
+     * @param Person $author
+     *
+     * @return self
+     */
+    public function removeAuthor(Person $author)
+    {
+        $this->authors->remove($author);
+
+        return $this;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getGuests() {
+
+        return $this->guests;
+    }
+
+    /**
+     * @param Person $guest
+     *
+     * @return self
+     */
+    public function addGuest(Person $guest)
+    {
+        $this->guests->add($guest);
+
+        return $this;
+    }
+
+    /**
+     * @param Person $guest
+     *
+     * @return self
+     */
+    public function removeGuest(Person $guest)
+    {
+        $this->guests->remove($guest);
+
+        return $this;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getMixeurs() {
+
+        return $this->mixeurs;
+    }
+
+    /**
+     * @param Person $mixeur
+     *
+     * @return self
+     */
+    public function addMixeur(Person $mixeur)
+    {
+        $this->mixeurs->add($mixeur);
+
+        return $this;
+    }
+
+    /**
+     * @param Person $mixeur
+     *
+     * @return self
+     */
+    public function removeMixeur(Person $mixeur)
+    {
+        $this->mixeurs->remove($mixeur);
+
+        return $this;
     }
 
 }

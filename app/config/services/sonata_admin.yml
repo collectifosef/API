@@ -19,12 +19,19 @@ services:
         class: AppBundle\Admin\SeriesAdmin
         arguments: [~, AppBundle\Entity\Series, ~]
         tags:
-            - { name: sonata.admin, manager_type: orm, label: Série }
+            - { name: sonata.admin, manager_type: orm, label: Séries }
         public: true
 
     admin.podcast:
         class: AppBundle\Admin\PodcastAdmin
         arguments: [~, AppBundle\Entity\Podcast, ~]
         tags:
-            - { name: sonata.admin, manager_type: orm, label: Podcast }
+            - { name: sonata.admin, manager_type: orm, label: Podcasts }
+        public: true
+
+    admin.person:
+        class: AppBundle\Admin\PersonAdmin
+        arguments: [~, AppBundle\Entity\Podcast, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: Personnes }
         public: true

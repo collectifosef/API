@@ -12,9 +12,12 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use KaptainKool\KaptainKoolBundle\Model\AbstractBaseEntity;
 use KaptainKool\KaptainKoolBundle\Model\Traits\TimestampableTrait;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ORM\Entity
+ * @Vich\Uploadable
  */
 class Broadcast extends AbstractBaseEntity
 {
@@ -28,18 +31,26 @@ class Broadcast extends AbstractBaseEntity
     protected $description;
 
     /**
-     * @var string
+     * @var File
      *
-     * @ORM\Column(type="string")
+     * @Vich\UploadableField(mapping="broadcast", fileNameProperty="background", size="123541613155")
+     *
      */
-    protected $background;
+    private $backgroundFile;
 
     /**
      * @var string
      *
      * @ORM\Column(type="string")
      */
-    protected $thumbnail;
+    protected $background;
+
+//    /**
+//     * @var string
+//     *
+//     * @ORM\Column(type="string")
+//     */
+//    protected $thumbnail;
 
     /**
      * @var Category
@@ -89,6 +100,27 @@ class Broadcast extends AbstractBaseEntity
     }
 
     /**
+     *
+     * @param File $backgroundFile
+     *
+     * @return self
+     */
+    public function setBackgroundFile(File $backgroundFile = null)
+    {
+        $this->backgroundFile = $backgroundFile;
+
+        return $this;
+    }
+
+    /**
+     * @return File|null
+     */
+    public function getBackgroundFile()
+    {
+        return $this->backgroundFile;
+    }
+
+    /**
      * @return string
      */
     public function getBackground()
@@ -104,26 +136,6 @@ class Broadcast extends AbstractBaseEntity
     public function setBackground($background)
     {
         $this->background = $background;
-
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getThumbnail()
-    {
-        return $this->thumbnail;
-    }
-
-    /**
-     * @param string $thumbnail
-     *
-     * @return self
-     */
-    public function setThumbnail($thumbnail)
-    {
-        $this->thumbnail = $thumbnail;
 
         return $this;
     }
